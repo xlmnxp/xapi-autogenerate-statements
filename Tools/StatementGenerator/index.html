@@ -386,6 +386,8 @@
                                               <option value="quiz1">Quiz Module - Question 1</option>
                                               <option value="quiz2">Quiz Module - Question 2</option>
                                               <option value="quiz3">Quiz Module - Question 3</option>
+                                              <option value="cybersecurity-fundamentals">Cybersecurity Fundamentals</option>
+                                              <option value="cybersecurity-awareness">Cybersecurity Awareness</option>
                                             </select>
                                           </div>
                                           <!-- END JONO ADDED -->
@@ -1942,7 +1944,9 @@
   <!-- Custom Statement Functions -->
   <script type="text/javascript" src="js/statements.js"></script>
   <script type="module">
-    import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+    import { Faker, allLocales, faker as _faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+
+    let faker = new Faker({ locale: [allLocales['ar']] });
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
 
@@ -1950,6 +1954,40 @@
       $(select).selectedIndex = Math.floor(Math.random() * $$(select + " option").length);
       $(select).dispatchEvent(new Event('change'));
     }
+
+    // generate array of 50 predefined random arabic names in english letters and follow the following schema
+    let names = [
+      { "firstName": "Salem", "lastName": "Ali" },
+      { "firstName": "Rania", "lastName": "Mansour" },
+      { "firstName": "Sami", "lastName": "Mohammed" },
+      { "firstName": "Wafa", "lastName": "Mohammed" },
+      { "firstName": "Abdullah", "lastName": "Omar" },
+      { "firstName": "Mohammed", "lastName": "Ali" },
+      { "firstName": "Sara", "lastName": "Mohammed" },
+      { "firstName": "Rania", "lastName": "Mohammed" },
+      { "firstName": "Salem", "lastName": "Omar" },
+      { "firstName": "Sara", "lastName": "Omar" },
+      { "firstName": "Sami", "lastName": "Ali" },
+      { "firstName": "Sami", "lastName": "Omar" },
+      { "firstName": "Rania", "lastName": "Ali" },
+      { "firstName": "Sami", "lastName": "Mansour" },
+      { "firstName": "Wafa", "lastName": "Omar" },
+      { "firstName": "Rania", "lastName": "Omar" },
+      { "firstName": "Salem", "lastName": "Mansour" },
+      { "firstName": "Sara", "lastName": "Mansour" },
+      { "firstName": "Salem", "lastName": "Mohammed" },
+      { "firstName": "Sara", "lastName": "Ali" },
+      { "firstName": "Salem", "lastName": "Mohammed" },
+      { "firstName": "Rania", "lastName": "Mansour" },
+      { "firstName": "Sami", "lastName": "Mohammed" },
+      { "firstName": "Wafa", "lastName": "Mohammed" },
+      { "firstName": "Abdullah", "lastName": "Omar" },
+      { "firstName": "Mohammed", "lastName": "Ali" },
+      { "firstName": "Sara", "lastName": "Mohammed" },
+      // add more names here
+    ]
+
+
 
     async function generate() {
       let numberOfStatements = $("#statements-count").valueAsNumber;
@@ -1959,12 +1997,12 @@
       };
 
       for (let i = 0; i < numberOfStatements; i++) {
-        let firstName = faker.person.firstName();
-        let lastName = faker.person.lastName();
+        // get random name
+        let { firstName, lastName } = names[Math.floor(Math.random() * names.length)];
 
         // generate random actor
         $("#actor-agent-name").value = firstName + " " + lastName;
-        $("#actor-agent-email").value = faker.internet.email({
+        $("#actor-agent-email").value = _faker.internet.email({
           firstName, lastName
         });
 
@@ -1972,7 +2010,7 @@
         selectRandomOption("#predefined-verb");
         selectRandomOption("#object-type-list");
 
-        if($("#random-result").checked) {
+        if ($("#random-result").checked) {
           selectRandomOption("#result-success");
           selectRandomOption("#result-completion");
           $("#result-min-score").value = 0;
@@ -1981,7 +2019,7 @@
 
           $("#result-scaled-score").value = Math.floor(Math.random() * 100) / 100;
 
-          $("#result-response").value = faker.lorem.words(5);
+          $("#result-response").value = _faker.lorem.words(5);
         }
 
         $("#generate-statement").click();

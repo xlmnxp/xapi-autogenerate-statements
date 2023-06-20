@@ -3,7 +3,7 @@
 // Initialize the editor
 var editor = ace.edit('editor');
 editor.getSession().setMode('ace/mode/javascript');
-editor.on('change', function() {
+editor.on('change', function () {
     var r = validateJSON(editor.getValue());
     btnValidateJSON(r);
 });
@@ -31,29 +31,29 @@ var dateTimeSettings = {
 };
 
 // Handle XAPIWrapper XHR Errors
-ADL.xhrRequestOnError = function(xhr, method, url, callback, callbackargs) {
+ADL.xhrRequestOnError = function (xhr, method, url, callback, callbackargs) {
     console.log(xhr);
     notify({ title: "Status " + xhr.status + " " + xhr.statusText + ": ", message: xhr.response }, notificationErrorSettings);
 };
 
 // Handle XAPIWrapper Logs
-ADL.XAPIWrapper.log = function(str) {
+ADL.XAPIWrapper.log = function (str) {
     console.log(str);
     if (str != "updating lrs object with new configuration")
-      notify({ message: str }, notificationErrorSettings);
+        notify({ message: str }, notificationErrorSettings);
 };
 
 stmts = [];
 
 // Examples -- for text areas where multiline placeholders aren't allowed
 var accountAgentExample = {
-  "name": "xapiguy",
-  "homePage": "http://example.com"
+    "name": "xapiguy",
+    "homePage": "http://example.com"
 };
 
 var accountGroupExample = {
-  "name": "Team xAPI",
-  "homePage": "http://xapi.adlnet.gov"
+    "name": "Team xAPI",
+    "homePage": "http://xapi.adlnet.gov"
 };
 
 var groupExample = [
@@ -100,25 +100,25 @@ var groupExample2 = [
 
 var componentListChoicesExample = [
     {
-        "id": "golf", 
+        "id": "golf",
         "description": {
             "en-US": "Golf Example"
         }
     },
     {
-        "id": "facebook", 
+        "id": "facebook",
         "description": {
             "en-US": "Facebook App"
         }
     },
     {
-        "id": "tetris", 
+        "id": "tetris",
         "description": {
             "en-US": "Tetris Example"
         }
     },
     {
-        "id": "scrabble", 
+        "id": "scrabble",
         "description": {
             "en-US": "Scrabble Example"
         }
@@ -127,25 +127,25 @@ var componentListChoicesExample = [
 
 var componentListScaleExample = [
     {
-        "id": "likert_0", 
+        "id": "likert_0",
         "description": {
             "en-US": "It's OK"
         }
     },
     {
-        "id": "likert_1", 
+        "id": "likert_1",
         "description": {
             "en-US": "It's Pretty Cool"
         }
     },
     {
-        "id": "likert_2", 
+        "id": "likert_2",
         "description": {
             "en-US": "It's Damn Cool"
         }
     },
     {
-        "id": "likert_3", 
+        "id": "likert_3",
         "description": {
             "en-US": "It's Gonna Change the World"
         }
@@ -208,19 +208,19 @@ var componentListTargetExample = [
 
 var componentListStepsExample = [
     {
-        "id": "pong", 
+        "id": "pong",
         "description": {
             "en-US": "Net pong matches won"
         }
     },
     {
-        "id": "dg", 
+        "id": "dg",
         "description": {
             "en-US": "Strokes over par in disc golf at Liberty"
-            }
-        },
+        }
+    },
     {
-        "id": "lunch", 
+        "id": "lunch",
         "description": {
             "en-US": "Lunch having been eaten"
         }
@@ -268,403 +268,425 @@ var correctResponsesPatternOther = [
 ];
 
 var substatementExample = {
-    "actor" : {
+    "actor": {
         "objectType": "Agent",
-        "mbox":"mailto:test@example.com" 
+        "mbox": "mailto:test@example.com"
     },
-    "verb" : { 
-        "id":"http://example.com/visited", 
-        "display":{
-            "en-US":"will visit"
-        } 
+    "verb": {
+        "id": "http://example.com/visited",
+        "display": {
+            "en-US": "will visit"
+        }
     },
     "object": {
         "objectType": "Activity",
-        "id":"http://example.com/website",
-        "definition": { 
-            "name" : {
-                "en-US":"Some Awesome Website"
+        "id": "http://example.com/website",
+        "definition": {
+            "name": {
+                "en-US": "Some Awesome Website"
             }
         }
     }
 };
 
 var contextActivitiesExample = {
-  "grouping": [
-    {
-      "definition": {
-        "name": {
-          "en-US": "Statement Builder Context"
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "Statement Builder Context"
+                }
+            },
+            "id": "http://adlnet.github.io/xapi-lab/index.html#context",
+            "objectType": "Activity"
         }
-      },
-      "id": "http://adlnet.github.io/xapi-lab/index.html#context",
-      "objectType": "Activity"
-    }
-  ],
-  "parent": [
-    {
-      "definition": {
-        "name": {
-          "en-US": "xAPI Lab"
-        },
-        "description": {
-          "en-US": "Assisting in developing statements and communicating with a Learning Record Store (LRS)"
+    ],
+    "parent": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "xAPI Lab"
+                },
+                "description": {
+                    "en-US": "Assisting in developing statements and communicating with a Learning Record Store (LRS)"
+                }
+            },
+            "id": "http://adlnet.github.io/xapi-lab",
+            "objectType": "Activity"
         }
-      },
-      "id": "http://adlnet.github.io/xapi-lab",
-      "objectType": "Activity"
-    }
-  ],
-  "category": [
-    {
-      "id": "http://example.com/xapi/profile/xapi-tool"
-    }
-  ],
-  "other": [
-    {
-      "id": "http://adlnet.github.io"
-    }
-  ]
+    ],
+    "category": [
+        {
+            "id": "http://example.com/xapi/profile/xapi-tool"
+        }
+    ],
+    "other": [
+        {
+            "id": "http://adlnet.github.io"
+        }
+    ]
 };
 
-var contextQuizParent =  {
-      "parent": [
+var contextQuizParent = {
+    "parent": [
         {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo"
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo"
+                },
+                "description": {
+                    "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
+                }
             },
-            "description": {
-              "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
-          "objectType": "Activity"
-        },
-       {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo: 05-quiz"
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/05-quiz",
-          "objectType": "Activity"
-        }
-      ],
-      "grouping": [
-        { 
-            "definition": {
-                "name": {
-                    "en-US": "TECOM Workshop"
-                },
-                "description": {
-                    "en-US": "TECOM Workshop happening Nov 2016"
-                }
-            },
-            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
-            "objectType": "Activity"
-        }
-
-      ]
-    };
-
-var contextVideoParent =  {
-      "parent": [
-        {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo"
-            },
-            "description": {
-              "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
-          "objectType": "Activity"
-        },
-       {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo: 04-video"
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/04-video",
-          "objectType": "Activity"
-        }
-      ],
-      "grouping": [
-        { 
-            "definition": {
-                "name": {
-                    "en-US": "TECOM Workshop"
-                },
-                "description": {
-                    "en-US": "TECOM Workshop happening Nov 2016"
-                }
-            },
-            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
-            "objectType": "Activity"
-        }
-      ]
-    };
-
-var contextStepsParent =  {
-      "parent": [
-        {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo"
-            },
-            "description": {
-              "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
-          "objectType": "Activity"
-        },
-     {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo: 03-steps"
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps",
-          "objectType": "Activity"
-        }
-      ],
-      "grouping": [
-        { 
-          "definition": {
-                "name": {
-                    "en-US": "TECOM Workshop"
-                },
-                "description": {
-                    "en-US": "TECOM Workshop happening Nov 2016"
-                }
-            },
-            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
-            "objectType": "Activity"
-        }
-      ]
-    };
-
-var contextIngredientsParent =  {
-      "parent": [
-        {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo"
-            },
-            "description": {
-              "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
-          "objectType": "Activity"
-        },
-       {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo: 02-ingredients"
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients",
-          "objectType": "Activity"
-        }
-      ],
-      "grouping": [
-        { 
-            "definition": {
-                "name": {
-                    "en-US": "TECOM Workshop"
-                },
-                "description": {
-                    "en-US": "TECOM Workshop happening Nov 2016"
-                }
-            },
-            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
-            "objectType": "Activity"
-        }
-      ]
-    };
-
-var contextIntroParent =  {
-      "parent": [
-        {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo"
-            },
-            "description": {
-              "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
-          "objectType": "Activity"
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
+            "objectType": "Activity"
         },
         {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo: 01-intro"
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-intro",
-          "objectType": "Activity"
-        }
-      ],
-      "grouping": [
-        { 
-            "definition": {
-                "name": {
-                    "en-US": "TECOM Workshop"
-                },
-                "description": {
-                    "en-US": "TECOM Workshop happening Nov 2016"
-                }
-            },
-            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
-            "objectType": "Activity"
-        }
-      ]
-    };
-
-var contextCourseParent =  {
-      "parent": [
-        {
-          "definition": {
-            "name": {
-              "en-US": "How to Make French Toast xapi-jqm Course Demo"
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo: 05-quiz"
+                }
             },
-            "description": {
-              "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
-            }
-          },
-          "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
-          "objectType": "Activity"
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/05-quiz",
+            "objectType": "Activity"
         }
-      ],
-      "grouping": [
-        { 
-            "definition": {
-                "name": {
-                    "en-US": "TECOM Workshop"
-                },
-                "description": {
-                    "en-US": "TECOM Workshop happening Nov 2016"
-                }
-            },
-            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
-            "objectType": "Activity"
-        }
-      ]
-    };
+    ],
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "TECOM Workshop"
+                },
+                "description": {
+                    "en-US": "TECOM Workshop happening Nov 2016"
+                }
+            },
+            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
+            "objectType": "Activity"
+        }
 
-  var contextGrouping =  {
-      "grouping": [
-        { 
-            "id": localStorage.getItem("baseURI"),
-            "objectType": "Activity"
-        }
-      ]
-    };
+    ]
+};
+
+var contextVideoParent = {
+    "parent": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo"
+                },
+                "description": {
+                    "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
+            "objectType": "Activity"
+        },
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo: 04-video"
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/04-video",
+            "objectType": "Activity"
+        }
+    ],
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "TECOM Workshop"
+                },
+                "description": {
+                    "en-US": "TECOM Workshop happening Nov 2016"
+                }
+            },
+            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
+            "objectType": "Activity"
+        }
+    ]
+};
+
+var contextStepsParent = {
+    "parent": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo"
+                },
+                "description": {
+                    "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
+            "objectType": "Activity"
+        },
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo: 03-steps"
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps",
+            "objectType": "Activity"
+        }
+    ],
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "TECOM Workshop"
+                },
+                "description": {
+                    "en-US": "TECOM Workshop happening Nov 2016"
+                }
+            },
+            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
+            "objectType": "Activity"
+        }
+    ]
+};
+
+var contextIngredientsParent = {
+    "parent": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo"
+                },
+                "description": {
+                    "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
+            "objectType": "Activity"
+        },
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo: 02-ingredients"
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients",
+            "objectType": "Activity"
+        }
+    ],
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "TECOM Workshop"
+                },
+                "description": {
+                    "en-US": "TECOM Workshop happening Nov 2016"
+                }
+            },
+            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
+            "objectType": "Activity"
+        }
+    ]
+};
+
+var contextIntroParent = {
+    "parent": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo"
+                },
+                "description": {
+                    "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
+            "objectType": "Activity"
+        },
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo: 01-intro"
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-intro",
+            "objectType": "Activity"
+        }
+    ],
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "TECOM Workshop"
+                },
+                "description": {
+                    "en-US": "TECOM Workshop happening Nov 2016"
+                }
+            },
+            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
+            "objectType": "Activity"
+        }
+    ]
+};
+
+var contextCourseParent = {
+    "parent": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "How to Make French Toast xapi-jqm Course Demo"
+                },
+                "description": {
+                    "en-US": "A sample HTML5 mobile app with xAPI tracking that teaches you how to make french toast."
+                }
+            },
+            "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
+            "objectType": "Activity"
+        }
+    ],
+    "grouping": [
+        {
+            "definition": {
+                "name": {
+                    "en-US": "TECOM Workshop"
+                },
+                "description": {
+                    "en-US": "TECOM Workshop happening Nov 2016"
+                }
+            },
+            "id": "http://adlnet.gov/event/xapiworkshop/tecom",
+            "objectType": "Activity"
+        }
+    ]
+};
+
+var contextGrouping = {
+    "grouping": [
+        {
+            "id": localStorage.getItem("baseURI"),
+            "objectType": "Activity"
+        }
+    ]
+};
 
 
 var activities = [
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/",
         "description": "How to Make French Toast xapi-jqm Course Demo"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/toc/list", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/toc/list",
         "description": "How to Make French Toast xapi-jqm Course Demo: toc"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-intro", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-intro",
         "description": "How to Make French Toast xapi-jqm Course Demo: 01-intro"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-intro/p1", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-intro/p1",
         "description": "How to Make French Toast xapi-jqm Course Demo: 01-intro, page: p1"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients",
         "description": "How to Make French Toast xapi-jqm Course Demo: 02-ingredients"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients/p1", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients/p1",
         "description": "How to Make French Toast xapi-jqm Course Demo: 02-ingredients, page: p1"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients/p2", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-ingredients/p2",
         "description": "How to Make French Toast xapi-jqm Course Demo: 02-ingredients, page: p2"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p1", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p1",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p1"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p2", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p2",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p2"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p3", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p3",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p3"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p4", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p4",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p4"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p5", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p5",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p5"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p6", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p6",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p6"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p7", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p7",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p7"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p8", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p8",
         "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p8"
     },
     {
         "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/03-steps/p9", "description": "How to Make French Toast xapi-jqm Course Demo: 03-steps, page: p9"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/04-video", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/04-video",
         "description": "How to Make French Toast xapi-jqm Course Demo: 04-video"
     },
     {
-        "id": "https://www.youtube.com/watch?v=vPrtNzvDS5M", 
+        "id": "https://www.youtube.com/watch?v=vPrtNzvDS5M",
         "description": "How to Make French Toast xapi-jqm Course Demo: 04-video, page: p1"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/05-quiz", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/05-quiz",
         "description": "How to Make French Toast xapi-jqm Course Demo: 05-quiz"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/chapters/05-quiz#quiz-q1", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/chapters/05-quiz#quiz-q1",
         "description": "How to Make French Toast xapi-jqm Course Demo: 05-quiz, page: p1"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/chapters/05-quiz#quiz-q2", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/chapters/05-quiz#quiz-q2",
         "description": "How to Make French Toast xapi-jqm Course Demo: 05-quiz, page: p2"
     },
     {
-        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/chapters/05-quiz#quiz-q3", 
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/chapters/05-quiz#quiz-q3",
         "description": "How to Make French Toast xapi-jqm Course Demo: 05-quiz, page: p3"
-    }
+    },
+    /*
+    Cybersecurity Fundamentals: Protecting Yourself and Your Data
+    Cybersecurity Awareness Training: Staying Safe Online
+    Introduction to Information Security and Privacy
+    Cybersecurity for Non-Technical Professionals
+    Data Privacy and Security Best Practices
+    Securing the Human: Cybersecurity Awareness Training
+    Online Safety and Security: Protecting Yourself and Your Family
+    Cyber Threats and Defense Strategies
+    Insider Threats: Detecting and Preventing Cybersecurity Breaches
+    Cloud Security Fundamentals: Protecting Your Data in the Cloud
+    Item Author Certification
+    */
+   // convert list above to xAPI statements
+    {
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/01-introduction",
+        "description": "Cybersecurity Fundamentals: Protecting Yourself and Your Data"
+    },
+    {
+        "id": "http://adlnet.gov/xapi/samples/xapi-jqm/course/02-privacy/p1",
+        "description": "Cybersecurity Awareness Training: Staying Safe Online, page: p1"
+    },
 ];
 
 // Page Load
-$(function(){
+$(function () {
     // Pretty Print
     prettyPrint();
 
@@ -678,20 +700,20 @@ $(function(){
             $options2.append($("<option />").val(ADL.verbs[key]['id']).text(ADL.verbs[key]['display']['en-US']));
         }
     }
-    
-    
-    
+
+
+
     // Populate textareas
     $("#actor-group-members").val(JSON.stringify(groupExample, undefined, 4));
     $("#object-group-members").val(JSON.stringify(groupExample2, undefined, 4));
     $("#object-substatement-json").val(JSON.stringify(substatementExample, undefined, 4));
 
-//    $("#actor-types > div").hide();
-//    $("#actor-Agent").show();
+    //    $("#actor-types > div").hide();
+    //    $("#actor-Agent").show();
 
     $("#object-types > div").hide();
     $("#object-Activity").show();
-    
+
     $("#component-lists > div").hide();
     $("#correct-responses-pattern").hide();
 
@@ -718,54 +740,54 @@ $(function(){
  */
 
 /* General */
- 
+
 $("body").on("click", ".collapser a", function (e) { e.preventDefault(); });
 
-$('#opener').on('click', function() {		
-  var $console = $('#console-panel');
-  if ($console.hasClass("visible")) {
-    $console.removeClass('visible').animate({'margin-right':'-400px'});
-  } else {
-    $console.addClass('visible').animate({'margin-right':'0px'});
-  }	
-  return false;	
+$('#opener').on('click', function () {
+    var $console = $('#console-panel');
+    if ($console.hasClass("visible")) {
+        $console.removeClass('visible').animate({ 'margin-right': '-400px' });
+    } else {
+        $console.addClass('visible').animate({ 'margin-right': '0px' });
+    }
+    return false;
 });
 
 // Allow links inside collapsing headers to be clicked
-$(".panel-heading.collapser a:not([data-toggle='collapse'])").on("click", function(event) {
+$(".panel-heading.collapser a:not([data-toggle='collapse'])").on("click", function (event) {
     event.stopPropagation();
 });
 
 /* Statement Builder */
 
-$("#statement-builder-values").change(function() {
+$("#statement-builder-values").change(function () {
     considerPreviewStatement();
 });
 
-$( "#update-auth" ).click(function() {
-  setupConfig();  
+$("#update-auth").click(function () {
+    setupConfig();
 });
 
-$("#actor-Agent :input").on('keyup cut', function(e){
+$("#actor-Agent :input").on('keyup cut', function (e) {
     // Only worry about backspace (keyCode 8), make sure to include cut as well
-    if (e.type == "cut" || e.type == "keyup" && e.keyCode == 8){
+    if (e.type == "cut" || e.type == "keyup" && e.keyCode == 8) {
         // Only worry about IFIs, not name
-        if (this.id != "actor-agent-name"){
+        if (this.id != "actor-agent-name") {
             // Only capture backspace or cut to make IFI input empty
-            if (!this.value){
-                var inputs = $('input, textarea', '#actor-Agent' + ' .ifi').filter(function() {
-                    if (this.name != "actor-agent-name") return $.trim( this.value ).length > 0;
+            if (!this.value) {
+                var inputs = $('input, textarea', '#actor-Agent' + ' .ifi').filter(function () {
+                    if (this.name != "actor-agent-name") return $.trim(this.value).length > 0;
                 });
                 // If there is only one IFI input with text in it then remove all errors/warnings
-                if (inputs.length == 1){
-                    $('input, textarea', '#actor-Agent' + ' .ifi').filter(function() {
+                if (inputs.length == 1) {
+                    $('input, textarea', '#actor-Agent' + ' .ifi').filter(function () {
                         $(this).parent("div").removeClass("has-error");
                         $(this).next("div").empty();
                     });
                 }
-            }        
+            }
         }
-    } 
+    }
 });
 
 $("#statement-builder-values").validator({
@@ -799,37 +821,37 @@ $("#dmar-values").validator();
 //    $("#actor-types > #actor-" + actorType).show();
 //});
 
-$("#actor-agent-account-example").click(function(e) {
+$("#actor-agent-account-example").click(function (e) {
     $("#actor-agent-account").val(JSON.stringify(accountAgentExample, undefined, 4));
     $("#actor-agent-account").focus();
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#actor-group-account-example").click(function(e) {
+$("#actor-group-account-example").click(function (e) {
     $("#actor-group-account").val(JSON.stringify(accountGroupExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#predefined-verb").change(function() {
+$("#predefined-verb").change(function () {
     var $this = $(this);
     $("#verb-id").val($this.val());
     $("#verb-display").val($this.children(':selected').text());
 });
 
-$("#object-type").change(function() {
+$("#object-type").change(function () {
     var objectType = $(this).val();
     $("#object-types > div").hide();
     $("#object-types > #object-" + objectType).show();
 });
 
-$("#object-type-list").change(function() {
+$("#object-type-list").change(function () {
     var objectType = $(this).val();
-//    $("#object-types > div").hide();
-//    $("#object-types > #object-" + objectType).show();
+    //    $("#object-types > div").hide();
+    //    $("#object-types > #object-" + objectType).show();
     //alert(objectType);
-    switch(objectType){
+    switch (objectType) {
         case "course":
             $("#object-activity-name").val(activities[0].id);
             $("#object-activity-description").val(activities[0].description);
@@ -922,137 +944,144 @@ $("#object-type-list").change(function() {
             $("#object-activity-name").val(activities[22].id);
             $("#object-activity-description").val(activities[22].description);
             break;
-            
+        case "cybersecurity-fundamentals":
+            $("#object-activity-name").val(activities[23].id);
+            $("#object-activity-description").val(activities[23].description);
+            break;
+        case "cybersecurity-awareness":
+            $("#object-activity-name").val(activities[24].id);
+            $("#object-activity-description").val(activities[24].description);
+            break;
         default:
             $("#object-activity-name").val(activities[0].id);
             $("#object-activity-description").val(activities[0].description);
             break;
     }
-   
+
 });
 
-$("#object-activity-interaction-type").change(function() {
+$("#object-activity-interaction-type").change(function () {
     var objectActivityInteractionType = $(this).val();
     if (objectActivityInteractionType != "") {
-      $("#object-activity-type").val("http://adlnet.gov/expapi/activities/cmi.interaction");
-      $("#correct-responses-pattern").show();
+        $("#object-activity-type").val("http://adlnet.gov/expapi/activities/cmi.interaction");
+        $("#correct-responses-pattern").show();
     } else {
-      $("#object-activity-type").val("");
-      $("#correct-responses-pattern").hide();
+        $("#object-activity-type").val("");
+        $("#correct-responses-pattern").hide();
     }
     $("#component-lists > div").hide();
     var componentLists = [];
-    switch(objectActivityInteractionType) {
-      case "choice":
-        componentLists = ['choices'];
-      break;
-      case "sequencing":
-        componentLists = ['choices'];
-      break;
-      case "likert":
-        componentLists = ['scale'];
-      break;
-      case "matching":
-        componentLists = ['source','target'];
-      break;
-      case "performance":
-        componentLists = ['steps'];
-      break;
-      default:
-      break;
+    switch (objectActivityInteractionType) {
+        case "choice":
+            componentLists = ['choices'];
+            break;
+        case "sequencing":
+            componentLists = ['choices'];
+            break;
+        case "likert":
+            componentLists = ['scale'];
+            break;
+        case "matching":
+            componentLists = ['source', 'target'];
+            break;
+        case "performance":
+            componentLists = ['steps'];
+            break;
+        default:
+            break;
     }
     $("#component-lists textarea").val("");
     $("#object-activity-correct-responses-pattern").val("");
-    componentLists.forEach(function(e, i, a) {
-      $("#component-lists > #component-list-" + e).show();
+    componentLists.forEach(function (e, i, a) {
+        $("#component-lists > #component-list-" + e).show();
     });
 });
 
-$("#object-activity-component-list-choices-example").click(function(e) {
+$("#object-activity-component-list-choices-example").click(function (e) {
     $("#object-activity-component-list-choices").val(JSON.stringify(componentListChoicesExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-activity-component-list-scale-example").click(function(e) {
+$("#object-activity-component-list-scale-example").click(function (e) {
     $("#object-activity-component-list-scale").val(JSON.stringify(componentListScaleExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-activity-component-list-source-example").click(function(e) {
+$("#object-activity-component-list-source-example").click(function (e) {
     $("#object-activity-component-list-source").val(JSON.stringify(componentListSourceExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-activity-component-list-target-example").click(function(e) {
+$("#object-activity-component-list-target-example").click(function (e) {
     $("#object-activity-component-list-target").val(JSON.stringify(componentListTargetExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-activity-component-list-steps-example").click(function(e) {
+$("#object-activity-component-list-steps-example").click(function (e) {
     $("#object-activity-component-list-steps").val(JSON.stringify(componentListStepsExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-activity-correct-responses-pattern-example").click(function(e) {
+$("#object-activity-correct-responses-pattern-example").click(function (e) {
     var interactionType = $("#object-activity-interaction-type").val();
     var exampleJSON = "";
-    switch(interactionType) {
-      case "choice":
-        exampleJSON = correctResponsesPatternChoice;
-      break;
-      case "sequencing":
-        exampleJSON = correctResponsesPatternSequencing;
-      break;
-      case "likert":
-        exampleJSON = correctResponsesPatternLikert;
-      break;
-      case "matching":
-        exampleJSON = correctResponsesPatternMatching;
-      break;
-      case "performance":
-        exampleJSON = correctResponsesPatternPerformance;
-      break;
-      case "true-false":
-        exampleJSON = correctResponsesPatternTrueFalse;
-      break;
-      case "fill-in":
-        exampleJSON = correctResponsesPatternFillIn;
-      break;
-      case "long-fill-in":
-        exampleJSON = correctResponsesPatternLongFillIn;
-      break;
-      case "numeric":
-        exampleJSON = correctResponsesPatternNumeric;
-      break;
-      case "other":
-        exampleJSON = correctResponsesPatternOther;
-      break;
-      default:
-      break;
+    switch (interactionType) {
+        case "choice":
+            exampleJSON = correctResponsesPatternChoice;
+            break;
+        case "sequencing":
+            exampleJSON = correctResponsesPatternSequencing;
+            break;
+        case "likert":
+            exampleJSON = correctResponsesPatternLikert;
+            break;
+        case "matching":
+            exampleJSON = correctResponsesPatternMatching;
+            break;
+        case "performance":
+            exampleJSON = correctResponsesPatternPerformance;
+            break;
+        case "true-false":
+            exampleJSON = correctResponsesPatternTrueFalse;
+            break;
+        case "fill-in":
+            exampleJSON = correctResponsesPatternFillIn;
+            break;
+        case "long-fill-in":
+            exampleJSON = correctResponsesPatternLongFillIn;
+            break;
+        case "numeric":
+            exampleJSON = correctResponsesPatternNumeric;
+            break;
+        case "other":
+            exampleJSON = correctResponsesPatternOther;
+            break;
+        default:
+            break;
     }
     $("#object-activity-correct-responses-pattern").val(JSON.stringify(exampleJSON, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-agent-account-example").click(function(e) {
+$("#object-agent-account-example").click(function (e) {
     $("#object-agent-account").val(JSON.stringify(accountAgentExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#object-group-account-example").click(function(e) {
+$("#object-group-account-example").click(function (e) {
     $("#object-group-account").val(JSON.stringify(accountGroupExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$(".duration-segment").change(function(e) {
+$(".duration-segment").change(function (e) {
     var resultDurationYears = $("#result-duration-years").val();
     var resultDurationMonths = $("#result-duration-months").val();
     var resultDurationWeeks = $("#result-duration-weeks").val();
@@ -1073,64 +1102,64 @@ $(".duration-segment").change(function(e) {
     if (resultDurationHours != "") { duration += resultDurationHours + "H"; }
     if (resultDurationMinutes != "") { duration += resultDurationMinutes + "M"; }
     if (resultDurationSeconds != "" || resultDurationMilliseconds != "") {
-      if (resultDurationSeconds == "" && resultDurationMilliseconds != "") { resultDurationSeconds = 0; }
-      if (resultDurationMilliseconds.length == 1) { resultDurationMilliseconds = "0" + resultDurationMilliseconds; }
-      if (resultDurationSeconds == "" || (resultDurationSeconds != "" && resultDurationMilliseconds != "")) { resultDurationMilliseconds = "." + resultDurationMilliseconds; }
-      duration += resultDurationSeconds + resultDurationMilliseconds + "S";
+        if (resultDurationSeconds == "" && resultDurationMilliseconds != "") { resultDurationSeconds = 0; }
+        if (resultDurationMilliseconds.length == 1) { resultDurationMilliseconds = "0" + resultDurationMilliseconds; }
+        if (resultDurationSeconds == "" || (resultDurationSeconds != "" && resultDurationMilliseconds != "")) { resultDurationMilliseconds = "." + resultDurationMilliseconds; }
+        duration += resultDurationSeconds + resultDurationMilliseconds + "S";
     }
 
     $("#result-duration").val(duration);
 });
 
-$("#context-team-members-example").click(function(e) {
+$("#context-team-members-example").click(function (e) {
     $("#context-team-members").val(JSON.stringify(groupExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-context-activities-example").click(function(e) {
+$("#context-context-activities-example").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextActivitiesExample, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-grouping").click(function(e) {
+$("#context-grouping").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextGrouping, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-course-parent").click(function(e) {
+$("#context-course-parent").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextCourseParent, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-intro-parent").click(function(e) {
+$("#context-intro-parent").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextIntroParent, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-ingredients-parent").click(function(e) {
+$("#context-ingredients-parent").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextIngredientsParent, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-steps-parent").click(function(e) {
+$("#context-steps-parent").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextStepsParent, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-video-parent").click(function(e) {
+$("#context-video-parent").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextVideoParent, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
 });
 
-$("#context-quiz-parent").click(function(e) {
+$("#context-quiz-parent").click(function (e) {
     $("#context-context-activities").val(JSON.stringify(contextQuizParent, undefined, 4));
     considerPreviewStatement();
     e.preventDefault();
@@ -1139,13 +1168,13 @@ $("#context-quiz-parent").click(function(e) {
 
 /*  Statement Manipulation and Response -- Sending */
 
-$("#generate-statement").click(function(e) {
+$("#generate-statement").click(function (e) {
     previewStatement();
     e.preventDefault();
 });
 
 // Try parsing JSON to validate it
-$("#validate-json").click(function(e) {
+$("#validate-json").click(function (e) {
     var r = validateJSON(editor.getValue());
     var whichNotificationSettings = (r == true) ? notificationSettings : notificationErrorSettings;
     var notificationStatus = (r == true) ? "JSON is valid" : "JSON is <em>NOT</em> valid";
@@ -1154,27 +1183,27 @@ $("#validate-json").click(function(e) {
     e.preventDefault();
 });
 
-$("#queue-statement").click(function(e) {
+$("#queue-statement").click(function (e) {
     queueStatement();
     e.preventDefault();
 });
 
-$("#send-statement").click(function(e) {
+$("#send-statement").click(function (e) {
     sendStatement();
     e.preventDefault();
 });
 
-$("#clear-sent-statements").click(function(e) {
+$("#clear-sent-statements").click(function (e) {
     clearSentStatements();
     e.preventDefault();
 });
 
-$("#clear-statement-queue").click(function(e) {
+$("#clear-statement-queue").click(function (e) {
     clearStatementQueue();
     e.preventDefault();
 });
 
-$("#send-statement-queue").click(function(e) {
+$("#send-statement-queue").click(function (e) {
     sendStatementQueue();
     e.preventDefault();
 });
@@ -1182,17 +1211,17 @@ $("#send-statement-queue").click(function(e) {
 
 /*  Statement Manipulation and Response -- Receiving */
 
-$("#search-predefined-verb").change(function() {
+$("#search-predefined-verb").change(function () {
     var $this = $(this);
     $("#search-user-verb-id").val($this.val());
 });
 
-$("#get-statements-with-search").click(function(e) {
+$("#get-statements-with-search").click(function (e) {
     getStatementsWithSearch();
     e.preventDefault();
 });
 
-$("#clear-received-statements").click(function(e) {
+$("#clear-received-statements").click(function (e) {
     clearReceivedStatements();
     e.preventDefault();
 });
@@ -1200,22 +1229,22 @@ $("#clear-received-statements").click(function(e) {
 
 /*  Document Manipulation and Response -- Sending */
 
-$("#send-state").click(function(e) {
+$("#send-state").click(function (e) {
     sendState();
     e.preventDefault();
 });
 
-$("#send-activity-profile").click(function(e) {
+$("#send-activity-profile").click(function (e) {
     sendActivityProfile();
     e.preventDefault();
 });
 
-$("#send-agent-profile").click(function(e) {
+$("#send-agent-profile").click(function (e) {
     sendAgentProfile();
     e.preventDefault();
 });
 
-$("#clear-sent-documents").click(function(e) {
+$("#clear-sent-documents").click(function (e) {
     clearSentDocuments();
     e.preventDefault();
 });
@@ -1223,22 +1252,22 @@ $("#clear-sent-documents").click(function(e) {
 
 /*  Document Manipulation and Response -- Receiving */
 
-$("#get-state").click(function(e) {
+$("#get-state").click(function (e) {
     getState();
     e.preventDefault();
 });
 
-$("#get-activity-profile").click(function(e) {
+$("#get-activity-profile").click(function (e) {
     getActivityProfile();
     e.preventDefault();
 });
 
-$("#get-agent-profile").click(function(e) {
+$("#get-agent-profile").click(function (e) {
     getAgentProfile();
     e.preventDefault();
 });
 
-$("#clear-received-documents").click(function(e) {
+$("#clear-received-documents").click(function (e) {
     clearReceivedDocuments();
     e.preventDefault();
 });
@@ -1246,22 +1275,22 @@ $("#clear-received-documents").click(function(e) {
 
 /*  Document Manipulation and Response -- Deleting */
 
-$("#delete-state").click(function(e) {
+$("#delete-state").click(function (e) {
     deleteState();
     e.preventDefault();
 });
 
-$("#delete-activity-profile").click(function(e) {
+$("#delete-activity-profile").click(function (e) {
     deleteActivityProfile();
     e.preventDefault();
 });
 
-$("#delete-agent-profile").click(function(e) {
+$("#delete-agent-profile").click(function (e) {
     deleteAgentProfile();
     e.preventDefault();
 });
 
-$("#clear-deleted-documents").click(function(e) {
+$("#clear-deleted-documents").click(function (e) {
     clearDeletedDocuments();
     e.preventDefault();
 });
@@ -1270,7 +1299,7 @@ $("#clear-deleted-documents").click(function(e) {
 // $("#load-graphs").click(function(e) {
 //     // call from other js library, charts.js
 //     xapicharts.showCharts();
-    
+
 //     e.preventDefault();
 // });
 
@@ -1280,7 +1309,7 @@ $("#clear-deleted-documents").click(function(e) {
 $("#endpoint-values").validator();
 
 // Update statement viewer links to pass auth via query string
-$("#endpoint-values").keyup(function() {
+$("#endpoint-values").keyup(function () {
     var root = $(".statement-viewer").attr("rel");
     console.log(root);
     var endpoint = $("#endpoint").val();
@@ -1293,13 +1322,13 @@ $("#endpoint-values").keyup(function() {
 /*
  * Functions
  */
- 
+
 // Helper Functions
 
 // Form Validation
 function validateAgentIFI(div) {
-    var inputs = $('input, textarea', div + ' .ifi').filter(function() {
-        return $.trim( this.value ).length > 0;
+    var inputs = $('input, textarea', div + ' .ifi').filter(function () {
+        return $.trim(this.value).length > 0;
     });
 
     // console.log(inputs)
@@ -1309,8 +1338,8 @@ function validateAgentIFI(div) {
 }
 
 function validateGroupIFI(div, members) {
-    var inputs = $('input, textarea', div + ' .ifi').filter(function() {
-        return $.trim( this.value ).length > 0;
+    var inputs = $('input, textarea', div + ' .ifi').filter(function () {
+        return $.trim(this.value).length > 0;
     });
 
     //console.log(inputs.length);
@@ -1321,14 +1350,14 @@ function validateGroupIFI(div, members) {
 
 // Notification
 function notify(message, settings) {
-  // message is a JSON object with message and optional title
-  $.notify(message, settings);
-  if (message.hasOwnProperty('title')) {
-      message.message = message.title + "<br>" + message.message;
-  }
-  var curDate = moment().format('MM-DD-YYYY HH:mm:ssa');
-  $("#console-history").prepend('<div class="alert alert-' + settings.type + ' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message.message + '<br /><small>' + curDate + '</small></div>');
-  $("#console-history").prepend();
+    // message is a JSON object with message and optional title
+    $.notify(message, settings);
+    if (message.hasOwnProperty('title')) {
+        message.message = message.title + "<br>" + message.message;
+    }
+    var curDate = moment().format('MM-DD-YYYY HH:mm:ssa');
+    $("#console-history").prepend('<div class="alert alert-' + settings.type + ' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message.message + '<br /><small>' + curDate + '</small></div>');
+    $("#console-history").prepend();
 }
 
 // Override any credentials put in the XAPIWrapper.js
@@ -1339,8 +1368,8 @@ function setupConfig() {
     var password = $("#password").val();
 
     var conf = {
-        "endpoint" : endpoint,
-        "auth" : "Basic " + toBase64(user + ":" + password),
+        "endpoint": endpoint,
+        "auth": "Basic " + toBase64(user + ":" + password),
     };
     ADL.XAPIWrapper.changeConfig(conf);
 }
@@ -1349,7 +1378,7 @@ function setupConfig() {
 function buildStatement() {
     //var actorType = $("#actor-type").val();
     var actorType = "Agent";
-    
+
     var actorAgentEmail = $("#actor-agent-email").val();
     var actorAgentEmailSha1 = $("#actor-agent-email-sha1").val();
     var actorAgentOpenID = $("#actor-agent-openid").val();
@@ -1366,11 +1395,11 @@ function buildStatement() {
     var verbLanguage = $("#verb-language").val();
     var objectType = $("#object-type").val();
     var objectActivityID = $("#object-activity-id").val();
-    
+
     var objectActivityID2 = $("#object-activity-name").val();
-    
+
     //var objectActivityName = $("#object-activity-name").val();
-    var objectActivityName = $("#object-activity-description").val();    
+    var objectActivityName = $("#object-activity-description").val();
     var objectActivityDescription = $("#object-activity-description").val();
     var objectActivityLanguage = $("#object-activity-language").val();
     var objectActivityType = $("#object-activity-type").val();
@@ -1435,27 +1464,27 @@ function buildStatement() {
     if (statementVersion != "") { stmt['version'] = statementVersion; }
 
     stmt['actor'] = {};
-    switch(actorType) {
-      case "Agent":
-        // LRS will reject if more than one IFI is in the statement
-        if (actorAgentEmail != "") { stmt['actor']['mbox'] = "mailto:" + actorAgentEmail; }
-        if (actorAgentEmailSha1 != "") { stmt['actor']['mbox_sha1sum'] = actorAgentEmailSha1; }
-        if (actorAgentOpenID != "") { stmt['actor']['openid'] = actorAgentOpenID; }
-        if (actorAgentAccount != "") { stmt['actor']['account'] = $.parseJSON(actorAgentAccount); }
-        if (actorAgentName != "") { stmt['actor']['name'] = actorAgentName; }
-        stmt['actor']['objectType'] = "Agent";
-        break;
-      case "Group":
-        if (actorGroupEmail != "") { stmt['actor']['mbox'] = "mailto:" + actorGroupEmail; }
-        if (actorGroupEmailSha1 != "") { stmt['actor']['mbox_sha1sum'] = actorGroupEmailSha1; }
-        if (actorGroupOpenID != "") { stmt['actor']['openid'] = actorGroupOpenID; }
-        if (actorGroupAccount != "") { stmt['actor']['account'] = $.parseJSON(actorGroupAccount); }
-        if (actorGroupName != "") { stmt['actor']['name'] = actorGroupName; }
-        if (actorGroupMembers != "") { stmt['actor']['member'] = $.parseJSON(actorGroupMembers); }
-        break;
-      default:
+    switch (actorType) {
+        case "Agent":
+            // LRS will reject if more than one IFI is in the statement
+            if (actorAgentEmail != "") { stmt['actor']['mbox'] = "mailto:" + actorAgentEmail; }
+            if (actorAgentEmailSha1 != "") { stmt['actor']['mbox_sha1sum'] = actorAgentEmailSha1; }
+            if (actorAgentOpenID != "") { stmt['actor']['openid'] = actorAgentOpenID; }
+            if (actorAgentAccount != "") { stmt['actor']['account'] = $.parseJSON(actorAgentAccount); }
+            if (actorAgentName != "") { stmt['actor']['name'] = actorAgentName; }
+            stmt['actor']['objectType'] = "Agent";
+            break;
+        case "Group":
+            if (actorGroupEmail != "") { stmt['actor']['mbox'] = "mailto:" + actorGroupEmail; }
+            if (actorGroupEmailSha1 != "") { stmt['actor']['mbox_sha1sum'] = actorGroupEmailSha1; }
+            if (actorGroupOpenID != "") { stmt['actor']['openid'] = actorGroupOpenID; }
+            if (actorGroupAccount != "") { stmt['actor']['account'] = $.parseJSON(actorGroupAccount); }
+            if (actorGroupName != "") { stmt['actor']['name'] = actorGroupName; }
+            if (actorGroupMembers != "") { stmt['actor']['member'] = $.parseJSON(actorGroupMembers); }
+            break;
+        default:
     }
-    
+
     stmt['actor']['objectType'] = actorType;
 
     stmt['verb'] = {};
@@ -1464,62 +1493,62 @@ function buildStatement() {
     stmt['verb']['display'][verbLanguage] = verbDisplay;
     stmt['object'] = {};
 
-    switch(objectType) {
-      case "Activity":
-        stmt['object']['id'] = objectActivityID2;
-        if (/.+/.test([ objectActivityName, objectActivityDescription, objectActivityType, objectActivityMoreInfo, objectActivityExtensions ].join(""))) {
-            stmt['object']['definition'] = {};
-        }
-        if (objectActivityName != "" && objectActivityLanguage != "") {
-            stmt['object']['definition']['name'] = {};
-            stmt['object']['definition']['name'][objectActivityLanguage] = objectActivityName;
-        }
-        if (objectActivityDescription != "" && objectActivityLanguage != "") {
-            stmt['object']['definition']['description'] = {};
-            stmt['object']['definition']['description'][objectActivityLanguage] = objectActivityDescription;
-        }
-        if (objectActivityType != "") { stmt['object']['definition']['type'] = objectActivityType; }
-        if (objectActivityMoreInfo != "") { stmt['object']['definition']['moreInfo'] = objectActivityMoreInfo; }
-        if (objectActivityInteractionType != "") { stmt['object']['definition']['interactionType'] = objectActivityInteractionType; }
-        if (objectActivityComponentListChoices != "") { stmt['object']['definition']['choices'] = $.parseJSON(objectActivityComponentListChoices); }
-        if (objectActivityComponentListScale != "") { stmt['object']['definition']['scale'] = $.parseJSON(objectActivityComponentListScale); }
-        if (objectActivityComponentListSource != "") { stmt['object']['definition']['source'] = $.parseJSON(objectActivityComponentListSource); }
-        if (objectActivityComponentListTarget != "") { stmt['object']['definition']['target'] = $.parseJSON(objectActivityComponentListTarget); }
-        if (objectActivityComponentListSteps != "") { stmt['object']['definition']['steps'] = $.parseJSON(objectActivityComponentListSteps); }
-        if (objectActivityCorrectResponsesPattern != "") { stmt['object']['definition']['correctResponsesPattern'] = $.parseJSON(objectActivityCorrectResponsesPattern); }
-        if (objectActivityExtensions != "") { stmt['object']['definition']['extensions'] = $.parseJSON(objectActivityExtensions); }
-        break;
-      case "Agent":
-        // LRS will reject if more than one IFI is in the statement
-        if (objectAgentEmail != "") { stmt['object']['mbox'] = "mailto:" + objectAgentEmail; }
-        if (objectAgentEmailSha1 != "") { stmt['object']['mbox_sha1sum'] = objectAgentEmailSha1; }
-        if (objectAgentOpenID != "") { stmt['object']['openid'] = objectAgentOpenID; }
-        if (objectAgentAccount != "") { stmt['object']['account'] = $.parseJSON(objectAgentAccount); }
-        if (objectAgentName != "") { stmt['object']['name'] = objectAgentName; }
-        stmt['object']['objectType'] = "Agent";
-        break;
-      case "Group":
-        if (objectGroupEmail != "") { stmt['object']['mbox'] = "mailto:" + objectGroupEmail; }
-        if (objectGroupEmailSha1 != "") { stmt['object']['mbox_sha1sum'] = objectGroupEmailSha1; }
-        if (objectGroupOpenID != "") { stmt['object']['openid'] = objectGroupOpenID; }
-        if (objectGroupAccount != "") { stmt['object']['account'] = $.parseJSON(objectGroupAccount); }
-        if (objectGroupName != "") { stmt['object']['name'] = objectGroupName; }
-        if (objectGroupMembers != "") { stmt['object']['member'] = $.parseJSON(objectGroupMembers); }
-        break;
-      case "StatementRef":
-        stmt['object']['id'] = objectStatementRef;
-        break;
-      case "SubStatement":
-        stmt['object'] = $.parseJSON(objectSubStatement);
-        break;
-      default:
+    switch (objectType) {
+        case "Activity":
+            stmt['object']['id'] = objectActivityID2;
+            if (/.+/.test([objectActivityName, objectActivityDescription, objectActivityType, objectActivityMoreInfo, objectActivityExtensions].join(""))) {
+                stmt['object']['definition'] = {};
+            }
+            if (objectActivityName != "" && objectActivityLanguage != "") {
+                stmt['object']['definition']['name'] = {};
+                stmt['object']['definition']['name'][objectActivityLanguage] = objectActivityName;
+            }
+            if (objectActivityDescription != "" && objectActivityLanguage != "") {
+                stmt['object']['definition']['description'] = {};
+                stmt['object']['definition']['description'][objectActivityLanguage] = objectActivityDescription;
+            }
+            if (objectActivityType != "") { stmt['object']['definition']['type'] = objectActivityType; }
+            if (objectActivityMoreInfo != "") { stmt['object']['definition']['moreInfo'] = objectActivityMoreInfo; }
+            if (objectActivityInteractionType != "") { stmt['object']['definition']['interactionType'] = objectActivityInteractionType; }
+            if (objectActivityComponentListChoices != "") { stmt['object']['definition']['choices'] = $.parseJSON(objectActivityComponentListChoices); }
+            if (objectActivityComponentListScale != "") { stmt['object']['definition']['scale'] = $.parseJSON(objectActivityComponentListScale); }
+            if (objectActivityComponentListSource != "") { stmt['object']['definition']['source'] = $.parseJSON(objectActivityComponentListSource); }
+            if (objectActivityComponentListTarget != "") { stmt['object']['definition']['target'] = $.parseJSON(objectActivityComponentListTarget); }
+            if (objectActivityComponentListSteps != "") { stmt['object']['definition']['steps'] = $.parseJSON(objectActivityComponentListSteps); }
+            if (objectActivityCorrectResponsesPattern != "") { stmt['object']['definition']['correctResponsesPattern'] = $.parseJSON(objectActivityCorrectResponsesPattern); }
+            if (objectActivityExtensions != "") { stmt['object']['definition']['extensions'] = $.parseJSON(objectActivityExtensions); }
+            break;
+        case "Agent":
+            // LRS will reject if more than one IFI is in the statement
+            if (objectAgentEmail != "") { stmt['object']['mbox'] = "mailto:" + objectAgentEmail; }
+            if (objectAgentEmailSha1 != "") { stmt['object']['mbox_sha1sum'] = objectAgentEmailSha1; }
+            if (objectAgentOpenID != "") { stmt['object']['openid'] = objectAgentOpenID; }
+            if (objectAgentAccount != "") { stmt['object']['account'] = $.parseJSON(objectAgentAccount); }
+            if (objectAgentName != "") { stmt['object']['name'] = objectAgentName; }
+            stmt['object']['objectType'] = "Agent";
+            break;
+        case "Group":
+            if (objectGroupEmail != "") { stmt['object']['mbox'] = "mailto:" + objectGroupEmail; }
+            if (objectGroupEmailSha1 != "") { stmt['object']['mbox_sha1sum'] = objectGroupEmailSha1; }
+            if (objectGroupOpenID != "") { stmt['object']['openid'] = objectGroupOpenID; }
+            if (objectGroupAccount != "") { stmt['object']['account'] = $.parseJSON(objectGroupAccount); }
+            if (objectGroupName != "") { stmt['object']['name'] = objectGroupName; }
+            if (objectGroupMembers != "") { stmt['object']['member'] = $.parseJSON(objectGroupMembers); }
+            break;
+        case "StatementRef":
+            stmt['object']['id'] = objectStatementRef;
+            break;
+        case "SubStatement":
+            stmt['object'] = $.parseJSON(objectSubStatement);
+            break;
+        default:
     }
-    
+
     stmt['object']['objectType'] = objectType;
 
-    if (/.+/.test([ resultScaledScore, resultRawScore, resultMinScore, resultMaxScore, resultSuccess, resultCompletion, resultResponse, resultDuration, resultExtensions ].join(""))) {
+    if (/.+/.test([resultScaledScore, resultRawScore, resultMinScore, resultMaxScore, resultSuccess, resultCompletion, resultResponse, resultDuration, resultExtensions].join(""))) {
         stmt['result'] = {};
-        if ( resultScaledScore != "" || resultRawScore != "" || resultMinScore != "" || resultMaxScore != "" ) {
+        if (resultScaledScore != "" || resultRawScore != "" || resultMinScore != "" || resultMaxScore != "") {
             stmt['result']['score'] = {};
             if (resultScaledScore != "") { stmt['result']['score']['scaled'] = parseFloat(resultScaledScore); }
             if (resultRawScore != "") { stmt['result']['score']['raw'] = parseInt(resultRawScore); }
@@ -1533,7 +1562,7 @@ function buildStatement() {
         if (resultExtensions != "") { stmt['result']['extensions'] = $.parseJSON(resultExtensions); }
     }
 
-    if (/.+/.test([ contextRegistrationID, contextInstructorEmail, contextInstructorName, contextTeamName, contextTeamMembers, contextContextActivities, contextRevision, contextPlatform, contextLanguage, contextStatement, contextExtensions ].join(""))) {
+    if (/.+/.test([contextRegistrationID, contextInstructorEmail, contextInstructorName, contextTeamName, contextTeamMembers, contextContextActivities, contextRevision, contextPlatform, contextLanguage, contextStatement, contextExtensions].join(""))) {
         stmt['context'] = {};
         if (contextRegistrationID != "") { stmt['context']['registration'] = contextRegistrationID; }
         if (contextInstructorEmail != "" || contextInstructorName != "") {
@@ -1560,23 +1589,23 @@ function buildStatement() {
         if (contextExtensions != "") { stmt['context']['extensions'] = $.parseJSON(contextExtensions); }
     }
 
-    if (/.+/.test([ attachmentDisplay, attachmentDescription, attachmentLanguage, attachmentContentType, attachmentLength, attachmentSha2, attachmentFileURL ].join(""))) {
-      stmt['attachments'] = [];
-      var attachment = {};
-      attachment['usageType'] = attachmentUsageType;
-      if (attachmentDisplay != "" && attachmentLanguage != "") {
-          attachment['display'] = {};
-          attachment['display'][attachmentLanguage] = attachmentDisplay;
-      }
-      if (attachmentDescription != "" && attachmentLanguage != "") {
-          attachment['description'] = {};
-          attachment['description'][attachmentLanguage] = attachmentDescription;
-      }      
-      attachment['contentType'] = attachmentContentType;
-      attachment['length'] = parseInt(attachmentLength);
-      attachment['sha2'] = attachmentSha2;
-      if (attachmentFileURL != "") { attachment['fileUrl'] = attachmentFileURL; }
-      stmt['attachments'].push(attachment);
+    if (/.+/.test([attachmentDisplay, attachmentDescription, attachmentLanguage, attachmentContentType, attachmentLength, attachmentSha2, attachmentFileURL].join(""))) {
+        stmt['attachments'] = [];
+        var attachment = {};
+        attachment['usageType'] = attachmentUsageType;
+        if (attachmentDisplay != "" && attachmentLanguage != "") {
+            attachment['display'] = {};
+            attachment['display'][attachmentLanguage] = attachmentDisplay;
+        }
+        if (attachmentDescription != "" && attachmentLanguage != "") {
+            attachment['description'] = {};
+            attachment['description'][attachmentLanguage] = attachmentDescription;
+        }
+        attachment['contentType'] = attachmentContentType;
+        attachment['length'] = parseInt(attachmentLength);
+        attachment['sha2'] = attachmentSha2;
+        if (attachmentFileURL != "") { attachment['fileUrl'] = attachmentFileURL; }
+        stmt['attachments'].push(attachment);
     }
 
     //console.log(stmt);
@@ -1630,7 +1659,7 @@ function sendStatement() {
 
     var xstmt = $.parseJSON(stmt);
 
-    ADL.XAPIWrapper.sendStatement(xstmt, function(r, obj) {
+    ADL.XAPIWrapper.sendStatement(xstmt, function (r, obj) {
         console.log(r);
         //console.log(obj);
         // notification
@@ -1651,7 +1680,7 @@ function queueStatement(stmt) {
         notify({ message: "invalid JSON, cannot add to queue" }, notificationErrorSettings);
         return false;
     }
-    
+
     var xstmt = $.parseJSON(stmt);
 
     var _stmt = new ADL.XAPIStatement(stmt);
@@ -1668,7 +1697,7 @@ function sendStatementQueue() {
 
     //var xstmts = $.parseJSON(stmts);
 
-    ADL.XAPIWrapper.sendStatements(stmts, function(r, obj) {
+    ADL.XAPIWrapper.sendStatements(stmts, function (r, obj) {
         //console.log(r);
         //console.log(obj);
         // notification
@@ -1732,7 +1761,7 @@ function getStatementsWithSearch() {
     var search = ADL.XAPIWrapper.searchParams();
     if (verbId != "") { search['verb'] = verbId; }
     if (verbSort != "") { search['ascending'] = verbSort; }
-    if (actorEmail != "") { search['agent'] = JSON.stringify({ "mbox": "mailto:" + actorEmail}); }
+    if (actorEmail != "") { search['agent'] = JSON.stringify({ "mbox": "mailto:" + actorEmail }); }
     if (activityId != "") { search['activity'] = activityId; }
     if (relatedAgents != "") { search['related_agents'] = relatedAgents; }
     if (relatedActivities != "") { search['related_activities'] = relatedActivities; }
@@ -1744,7 +1773,7 @@ function getStatementsWithSearch() {
     if (limit != "") { search['limit'] = limit; }
     //console.log(search);
 
-    ADL.XAPIWrapper.getStatements(search, null, function(r) {
+    ADL.XAPIWrapper.getStatements(search, null, function (r) {
         //console.log(r);
         var response = $.parseJSON(r.response);
 
@@ -1796,15 +1825,15 @@ function sendState() {
     // noneMatchHash
     // callback
 
-    ADL.XAPIWrapper.sendState(activityId, {"mbox":"mailto:" + actorEmail}, stateId, null, stateValue, null, null, function(r) {
+    ADL.XAPIWrapper.sendState(activityId, { "mbox": "mailto:" + actorEmail }, stateId, null, stateValue, null, null, function (r) {
         notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         //$("#sent-documents").append("<p>Sent State <b>" + stateId + "</b>: " + stateValue + "</p>");
         if (validateJSON(stateValue) == true) {
-          stateValue = JSON.stringify($.parseJSON(stateValue), undefined, 4);
+            stateValue = JSON.stringify($.parseJSON(stateValue), undefined, 4);
         }
         $("#sent-documents").append(styleDocumentsView("State: " + stateId, stateValue));
         if (validateJSON(stateValue) == true) {
-          PR.prettyPrint();
+            PR.prettyPrint();
         }
         console.log(r);
     });
@@ -1812,7 +1841,7 @@ function sendState() {
 
 // Sent Activity Profile to the LRS
 function sendActivityProfile() {
-    
+
 
     var activityId = $("#document-activity-id").val();
     var profileId = $("#set-document-activity-profile-id").val();
@@ -1821,15 +1850,15 @@ function sendActivityProfile() {
     // noneMatchHash
     // callback
 
-    ADL.XAPIWrapper.sendActivityProfile(activityId, profileId, profileValue, null, "*", function(r) {
+    ADL.XAPIWrapper.sendActivityProfile(activityId, profileId, profileValue, null, "*", function (r) {
         notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         //$("#sent-documents").append("<p>Sent Activity Profile <b>" + profileId + "</b>: " + profileValue + "</p>");
         if (validateJSON(profileValue) == true) {
-          profileValue = JSON.stringify($.parseJSON(profileValue), undefined, 4);
+            profileValue = JSON.stringify($.parseJSON(profileValue), undefined, 4);
         }
         $("#sent-documents").append(styleDocumentsView("Activity Profile: " + profileId, profileValue));
         if (validateJSON(profileValue) == true) {
-          PR.prettyPrint();
+            PR.prettyPrint();
         }
         console.log(r);
     });
@@ -1837,7 +1866,7 @@ function sendActivityProfile() {
 
 // Sent Activity Profile to the LRS
 function sendAgentProfile() {
-    
+
 
     var actorEmail = $("#document-actor-email").val(); // TODO: Agent
     var profileId = $("#set-document-agent-profile-id").val();
@@ -1846,15 +1875,15 @@ function sendAgentProfile() {
     // noneMatchHash
     // callback
 
-    ADL.XAPIWrapper.sendAgentProfile({"mbox":"mailto:" + actorEmail}, profileId, profileValue, null, "*", function(r) {
+    ADL.XAPIWrapper.sendAgentProfile({ "mbox": "mailto:" + actorEmail }, profileId, profileValue, null, "*", function (r) {
         notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         //$("#sent-documents").append("<p>Sent Agent Profile <b>" + profileId + "</b>: " + profileValue + "</p>");
         if (validateJSON(profileValue) == true) {
-          profileValue = JSON.stringify($.parseJSON(profileValue), undefined, 4);
+            profileValue = JSON.stringify($.parseJSON(profileValue), undefined, 4);
         }
         $("#sent-documents").append(styleDocumentsView("Agent Profile: " + profileId, profileValue));
         if (validateJSON(profileValue) == true) {
-          PR.prettyPrint();
+            PR.prettyPrint();
         }
         console.log(r);
     });
@@ -1870,7 +1899,7 @@ function clearSentDocuments() {
 
 // Get State from the LRS
 function getState() {
-    
+
 
     var activityId = $("#document-activity-id").val();
     var actorEmail = $("#document-actor-email").val(); // TODO: Agent
@@ -1880,20 +1909,20 @@ function getState() {
     var sinceDate = (since == "") ? null : new Date(since);
     // callback
 
-    ADL.XAPIWrapper.getState(activityId, {"mbox":"mailto:" + actorEmail}, stateId, null, sinceDate, function(r) {
+    ADL.XAPIWrapper.getState(activityId, { "mbox": "mailto:" + actorEmail }, stateId, null, sinceDate, function (r) {
         if (r.status == 404)
-          notify({ message: "Status " + r.status + " " + r.statusText }, notificationWarningSettings);
+            notify({ message: "Status " + r.status + " " + r.statusText }, notificationWarningSettings);
         else
-          notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
+            notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         //$("#received-documents").append("<p>Received State <b>" + stateId + "</b>: " + r.response + "</p>");
         if (validateJSON(r.response) != true) {
-          var stateValue = r.response;
+            var stateValue = r.response;
         } else {
-          var stateValue = JSON.stringify($.parseJSON(r.response), undefined, 4);
+            var stateValue = JSON.stringify($.parseJSON(r.response), undefined, 4);
         }
         $("#received-documents").append(styleDocumentsView("State: " + stateId, stateValue));
         if (validateJSON(r.response) == true) {
-          PR.prettyPrint();
+            PR.prettyPrint();
         }
         console.log(r);
     });
@@ -1901,7 +1930,7 @@ function getState() {
 
 // Get Activity Profile from the LRS
 function getActivityProfile() {
-    
+
 
     var activityId = $("#document-activity-id").val();
     var profileId = $("#get-document-activity-profile-id").val();
@@ -1909,20 +1938,20 @@ function getActivityProfile() {
     var sinceDate = (since == "") ? null : new Date(since);
     // callback
 
-    ADL.XAPIWrapper.getActivityProfile(activityId, profileId, sinceDate, function(r) {
+    ADL.XAPIWrapper.getActivityProfile(activityId, profileId, sinceDate, function (r) {
         if (r.status == 404)
-          notify({ message: "Status " + r.status + " " + r.statusText }, notificationWarningSettings);
+            notify({ message: "Status " + r.status + " " + r.statusText }, notificationWarningSettings);
         else
-          notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
+            notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         //$("#received-documents").append("<p>Received Activity Profile <b>" + profileId + "</b>: " + r.response + "</p>");
         if (validateJSON(r.response) != true) {
-          var profileValue = r.response;
+            var profileValue = r.response;
         } else {
-          var profileValue = JSON.stringify($.parseJSON(r.response), undefined, 4);
+            var profileValue = JSON.stringify($.parseJSON(r.response), undefined, 4);
         }
         $("#received-documents").append(styleDocumentsView("Activity Profile: " + profileId, profileValue));
         if (validateJSON(r.response) == true) {
-          PR.prettyPrint();
+            PR.prettyPrint();
         }
         console.log(r);
     });
@@ -1930,7 +1959,7 @@ function getActivityProfile() {
 
 // Get Agent Profile from the LRS
 function getAgentProfile() {
-    
+
 
     var actorEmail = $("#document-actor-email").val(); // TODO: Agent
     var profileId = $("#get-document-agent-profile-id").val();
@@ -1938,20 +1967,20 @@ function getAgentProfile() {
     var sinceDate = (since == "") ? null : new Date(since);
     // callback
 
-    ADL.XAPIWrapper.getAgentProfile({"mbox":"mailto:" + actorEmail}, profileId, sinceDate, function(r) {
+    ADL.XAPIWrapper.getAgentProfile({ "mbox": "mailto:" + actorEmail }, profileId, sinceDate, function (r) {
         if (r.status == 404)
-          notify({ message: "Status " + r.status + " " + r.statusText }, notificationWarningSettings);
+            notify({ message: "Status " + r.status + " " + r.statusText }, notificationWarningSettings);
         else
-          notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
+            notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         //$("#received-documents").append("<p>Received Agent Profile <b>" + profileId + "</b>: " + r.response + "</p>");
         if (validateJSON(r.response) != true) {
-          var profileValue = r.response;
+            var profileValue = r.response;
         } else {
-          var profileValue = JSON.stringify($.parseJSON(r.response), undefined, 4);
+            var profileValue = JSON.stringify($.parseJSON(r.response), undefined, 4);
         }
         $("#received-documents").append(styleDocumentsView("Agent Profile: " + profileId, profileValue));
         if (validateJSON(r.response) == true) {
-          PR.prettyPrint();
+            PR.prettyPrint();
         }
         console.log(r);
     });
@@ -1973,7 +2002,7 @@ function clearReceivedDocuments() {
 
 // Delete State from the LRS
 function deleteState() {
-    
+
 
     var activityId = $("#document-activity-id").val();
     var actorEmail = $("#document-actor-email").val(); // TODO: Agent
@@ -1983,7 +2012,7 @@ function deleteState() {
     // noneMatchHash
     // callback
 
-    ADL.XAPIWrapper.deleteState(activityId, {"mbox":"mailto:" + actorEmail}, stateId, null, null, null, function(r) {
+    ADL.XAPIWrapper.deleteState(activityId, { "mbox": "mailto:" + actorEmail }, stateId, null, null, null, function (r) {
         notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         if (r.status == 204) {
             $("#deleted-documents").append("<p>Deleted State: <b>" + stateId + "</b></p>");
@@ -1994,7 +2023,7 @@ function deleteState() {
 
 // Delete Activity Profile from the LRS
 function deleteActivityProfile() {
-    
+
 
     var activityId = $("#document-activity-id").val();
     var profileId = $("#delete-document-activity-profile-id").val();
@@ -2002,7 +2031,7 @@ function deleteActivityProfile() {
     // noneMatchHash
     // callback
 
-    ADL.XAPIWrapper.deleteActivityProfile(activityId, profileId, null, null, function(r) {
+    ADL.XAPIWrapper.deleteActivityProfile(activityId, profileId, null, null, function (r) {
         notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         if (r.status == 204) {
             $("#deleted-documents").append("<p>Deleted Activity Profile: <b>" + profileId + "</b></p>");
@@ -2013,7 +2042,7 @@ function deleteActivityProfile() {
 
 // Delete Agent Profile from the LRS
 function deleteAgentProfile() {
-    
+
 
     var actorEmail = $("#document-actor-email").val(); // TODO: Agent
     var profileId = $("#delete-document-agent-profile-id").val();
@@ -2021,7 +2050,7 @@ function deleteAgentProfile() {
     // noneMatchHash
     // callback
 
-    ADL.XAPIWrapper.deleteAgentProfile({"mbox":"mailto:" + actorEmail}, profileId, null, null, function(r) {
+    ADL.XAPIWrapper.deleteAgentProfile({ "mbox": "mailto:" + actorEmail }, profileId, null, null, function (r) {
         notify({ message: "Status " + r.status + " " + r.statusText }, notificationSettings);
         $("#deleted-documents").append("<p>" + r.response + "</p>");
         if (r.status == 204) {
